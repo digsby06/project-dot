@@ -69,6 +69,6 @@ class DisplaysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def display_params
-      params.require(:display).permit(:name, :active_content)
+      params.require(:display).permit(:name, :active_content, :file)
     end
 end
