@@ -1,0 +1,52 @@
+// Place all the styles related to the page controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Colors
+
+$white: #fff;
+
+// Dashboard - Side Panel
+
+// #side_container{
+//   width: 400px;
+//   height: 100%;
+//   float: right;
+//   .side_panel{
+//     width: 100%;
+//     background-color: #000;
+//   }
+// }
+
+
+.side_container{
+width: 40rem;
+float: right;
+  .side {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #342532;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 4;
+    border-right: solid 1px opacify(#342532, 0.9);
+    .side_content{
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      color: $white;
+      ul{
+        list-style: none;
+      }
+
+    }
+  }
+
+
+}
+
+
+#entry_section{
+  width: 300px;
+}

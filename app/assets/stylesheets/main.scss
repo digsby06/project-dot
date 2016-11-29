@@ -1,0 +1,137 @@
+// Alignments
+.hidden {
+    display: none;
+}
+
+.alignleft {
+    float: left;
+}
+
+.alignright {
+    float: right;
+}
+
+.aligncenter {
+    display: block;
+    clear: both;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.textalignleft {
+    text-align: left;
+}
+
+.textaligncenter {
+    text-align: center;
+}
+
+.textalignright {
+    text-align: right;
+}
+
+img.alignleft {
+    float: left;
+    margin: 20px 25px 20px 0;
+}
+
+img.alignright {
+    display: block;
+    margin: 20px 0 20px 25px;
+}
+
+img.aligncenter {
+    display: block;
+    clear: both;
+    margin: 0 auto;
+}
+
+
+
+// Mosaic Grid
+
+.img_pixelized {
+  width: 10%;
+}
+
+/* Layout */
+
+#content_container {
+  margin-top: 50px;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+/* Navbar */
+
+.instagram-icon {
+  padding-top: 12.5px;
+}
+img.inactive {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.glyphicon-cog {
+  font-size: 1.2em;
+}
+
+/* Map */
+
+#map-canvas {
+	height: 600px;
+	width: 100%;
+  margin-right: 10px;
+}
+
+/* Info Window */
+
+.info-window {
+	width: 315px;
+}
+
+.info-window-caption {
+	word-wrap: break-word;
+}
+
+/* User Follows List */
+
+#instagram-user-follows-list {
+  height: 600px;
+  overflow-y: auto;
+}
+
+// .user-follow-form {
+//   font-size: 0.75em;
+//   &:hover {
+//     background-color: DarkGray;
+//   }
+// }
+
+/* Alerts */
+
+.alert {
+  margin-bottom: 0 !important;
+}
+
+/* User Registration */
+
+.social_media_authentication {
+  padding: 10px 5px;
+  border: 1px solid DarkGray;
+  border-radius: 5px;
+  background-color: LightGray;
+}

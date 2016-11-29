@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Entry name</th>
+      <th>Display</th>
+      <th>Hashtag</th>
+      <th>Account name</th>
+      <th>Fill percentage</th>
+      <th>Account active</th>
+      <th>Hashtag active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.entry_name %></td>
+        <td><%= entry.display_id %></td>
+        <td><%= entry.hashtag %></td>
+        <td><%= entry.account_name %></td>
+        <td><%= entry.fill_percentage %></td>
+        <td><%= entry.account_active %></td>
+        <td><%= entry.hashtag_active %></td>
+        <td><%= link_to 'Show', entry %></td>
+        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Entry', new_entry_path %>

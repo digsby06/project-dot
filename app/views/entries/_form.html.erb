@@ -1,0 +1,51 @@
+<%= form_for(entry) do |f| %>
+  <% if entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :entry_name %>
+    <%= f.text_field :entry_name %>
+  </div>
+
+  <div class="form-group">
+      <%= f.collection_select :display_id, @displays, :id, :name, {:include_blank => 'Select a Display'}, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hashtag %>
+    <%= f.text_field :hashtag %>
+  </div>
+
+  <div class="field">
+    <%= f.label :account_name %>
+    <%= f.text_field :account_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fill_percentage %>
+    <%= f.number_field :fill_percentage %>
+  </div>
+
+  <div class="field">
+    <%= f.label :account_active %>
+    <%= f.check_box :account_active %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hashtag_active %>
+    <%= f.check_box :hashtag_active %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

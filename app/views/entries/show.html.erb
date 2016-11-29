@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Entry name:</strong>
+  <%= @entry.entry_name %>
+</p>
+
+<p>
+  <strong>Display:</strong>
+  <%= @entry.display_id %>
+</p>
+
+<p>
+  <strong>Hashtag:</strong>
+  <%= @entry.hashtag %>
+</p>
+
+<p>
+  <strong>Account name:</strong>
+  <%= @entry.account_name %>
+</p>
+
+<p>
+  <strong>Fill percentage:</strong>
+  <%= @entry.fill_percentage %>
+</p>
+
+<p>
+  <strong>Account active:</strong>
+  <%= @entry.account_active %>
+</p>
+
+<p>
+  <strong>Hashtag active:</strong>
+  <%= @entry.hashtag_active %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>
