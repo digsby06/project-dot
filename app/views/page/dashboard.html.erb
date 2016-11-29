@@ -34,6 +34,23 @@
               </ul>
           </div>
 
+          <div id="display_section">
+            <h3>Create a New Display</h3>
+
+            <%= simple_form_for(@display, as: :display) do |f| %>
+                <div class="form-inputs">
+                  <%= f.input :name, required: true, autofocus: true %>
+                  <%= f.input :active_content, as: :boolean  %>
+                  <%= f.file_field :file, multiple: false, accept: ".jpg, .jpeg, .gif, .png, .mp4, .m4v, .webm, .ogg, .pdf", required: true %>
+                </div>
+
+                <div class="form-actions">
+                  <%= f.button :submit, "Submit", id: 'submit_btn' %>
+                </div>
+            <% end %>
+
+          </div>
+
           <div id="entry_section">
               <h3>Create New Entry</h3>
 
