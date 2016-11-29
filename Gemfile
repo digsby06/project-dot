@@ -14,8 +14,11 @@ gem 'puma', '~> 3.0'
 gem 'simple_form'
 
 
+
+
 # Styling
 gem 'bootstrap-sass'
+gem 'jquery-ui-rails'
 
 # Authentication
 gem 'devise'

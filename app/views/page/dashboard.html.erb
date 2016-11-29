@@ -26,49 +26,77 @@
         <div class="side_content">
 
           <div id="authorize_section">
-            <h3>Connect an Account</h3>
-              <ul>
-                <li>Instagram</li>
-                <li>Twitter</li>
-                <li>Facebook</li>
-              </ul>
+
+            <% if current_user.instagram_authenticated? %>
+                <h3>Connected Accounts</h3>
+                  <ul>
+                      <li class="instagram-icon">
+                        <%= image_tag "instagram_icon.png", height: 40, width: 40 %>
+                        <%= link_to "Unlink your Instagram account",
+                              authentication_path(current_user.instagram_authentication),
+                              method: :delete %>
+                            
+                      </li>
+                  </ul>
+
+              <% else %>
+
+              <h3>Connect an Account</h3>
+                  <ul>
+                    <li>
+                      <%= link_to user_instagram_omniauth_authorize_path(scope: "basic public_content relationships likes") do %>
+                        <%= image_tag "instagram_icon.png", height: 25, width: 25, class: "inactive", data: { toggle: 'tooltip', placement: 'bottom' }, title: "Authorize Instagram" %>
+                      <% end %>
+                    </li>
+                  </ul>
+              <% end %>
+
           </div>
+
+<% if current_user.instagram_authenticated? %>
 
           <div id="display_section">
             <h3>Create a New Display</h3>
 
             <%= simple_form_for(@display, as: :display) do |f| %>
                 <div class="form-inputs">
-                  <%= f.input :name, required: true, autofocus: true %>
-                  <%= f.input :active_content, as: :boolean  %>
+                  <%= f.input :name, label: "Name of Display", required: true, autofocus: true %>
+                  <%= f.input :active_content, label: "Activate", as: :boolean  %>
                   <%= f.file_field :file, multiple: false, accept: ".jpg, .jpeg, .gif, .png, .mp4, .m4v, .webm, .ogg, .pdf", required: true %>
                 </div>
 
                 <div class="form-actions">
-                  <%= f.button :submit, "Submit", id: 'submit_btn' %>
+                  <%= f.button :submit, "Submit", class: 'btn btn-primary' %>
                 </div>
             <% end %>
 
           </div>
 
           <div id="entry_section">
-              <h3>Create New Entry</h3>
+            <h3>Create a Entry</h3>
 
-              <ul>
-                <li>Name of Entry</li>
-                <li>Add a User</li>
-                <li>Add a Hashtag</li>
-                <li>Set Display Ratio</li>
-              </ul>
-              <br>
-              <div class="textaligncenter">
-                  <a href="#" class="btn btn-primary">Submit</a>
-              </div>
+              <%= simple_form_for(@entry, as: :entry) do |f| %>
+                  <div class="form-inputs">
+
+                    <%= f.input :display_id, :as => :select, :collection => @displays, :include_blank => 'Select a Display' %>
+                    <%= f.input :entry_name, label: "Name of Entry", required: true %>
+                    <%= f.input :account_name, label: "@Account" %>
+                    <%= f.input :hashtag, label: "#Hashtag" %>
+                    <%= f.input :fill_percentage, :as => :slider, :input_html => { :value => "100"}, label: "Set Fill Percentage" %>
+                  </div>
+
+                  <div class="form-actions">
+                    <%= f.button :submit, "Submit", class: 'btn btn-primary' %>
+                  </div>
+              <% end %>
+
           </div>
 
-          <div id="entry_management">
+<% end %>
 
           </div>
+
+
 
         </div>
       </div>

@@ -2,10 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// Colors
-
-$white: #fff;
-
+@import "colors";
 // Dashboard - Side Panel
 
 // #side_container{
@@ -24,15 +21,16 @@ width: 40rem;
 float: right;
   .side {
     position: fixed;
-    width: 100%;
+    width: 39rem;
     height: 100%;
     background-color: #342532;
     overflow-x: hidden;
     overflow-y: auto;
     z-index: 4;
     border-right: solid 1px opacify(#342532, 0.9);
+    padding: 2% 2%;
     .side_content{
-      width: 90%;
+      width: 100%;
       margin-left: auto;
       margin-right: auto;
       color: $white;

@@ -12,7 +12,10 @@ class PageController < ApplicationController
   def dashboard
     return unless current_user && current_user.instagram_authenticated?
       @tags = current_user.instagram_tags
+      @entry = Entry.new
       @display = Display.new
+      @displays = Display.all
+
   end
 
 
