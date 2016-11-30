@@ -6,6 +6,27 @@
 }
 
 
+h3 {
+  font-size: 20px;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
+// Margins
+.margin-20 {
+  margin-bottom: 20px;
+}
+
+.margin-40{
+  margin-bottom: 40px;
+}
+
+.margin-60{
+  margin-bottom: 60px;
+}
+
 
 // Alignments
 .hidden {
@@ -60,7 +81,8 @@ img.aligncenter {
 // Mosaic Grid
 
 .img_pixelized {
-  width: 10%;
+  max-width: 100px;
+  float: left;
 }
 
 /* Layout */

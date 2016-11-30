@@ -10,13 +10,23 @@ class User < ApplicationRecord
 
 VALID_USERNAME_REGEX = /\A\w+\z/i
 
-
-def instagram_tags
+def find_by_instagram_tag(tag)
   auth = authentications.find_by_provider('instagram')
   return nil if auth.nil?
   client = Instagram.client(client_id: ENV['INSTAGRAM_CLIENT_ID'],
                             access_token: auth.token)
-  media = client.tag_recent_media('Pikaboo')
+  media = client.tag_recent_media(tag)
+  urls = media.map { |media_item| media_item.images.standard_resolution.url}
+  urls
+end
+
+def find_by_instagram_account(account)
+  auth = authentications.find_by_provider('instagram')
+  return nil if auth.nil?
+  client = Instagram.client(client_id: ENV['INSTAGRAM_CLIENT_ID'],
+                            access_token: auth.token)
+  user = client.user
+  media = client.user_recent_media
   urls = media.map { |media_item| media_item.images.standard_resolution.url}
   urls
 end

@@ -15,15 +15,19 @@
 //   }
 // }
 
+.mosaic_container{
+  float: left;
+  max-width: 75%;
+}
 
 .side_container{
 width: 40rem;
 float: right;
   .side {
     position: fixed;
-    width: 39rem;
+    width: 40rem;
     height: 100%;
-    background-color: #342532;
+    background-color: $darkgray;
     overflow-x: hidden;
     overflow-y: auto;
     z-index: 4;

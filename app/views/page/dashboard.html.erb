@@ -1,22 +1,10 @@
 
-<!-- <div class="row">
-  <%= render partial: "shared/tags", collection: @tags %>
-</div> -->
 
-<!-- <div id="side_container">
-  <div class="side_panel">
-
-<p>
-  Hello
-</p>
-
-  </div>
-</div> -->
 <div id="content_container">
-  <div class="row">
     <div class="mosaic_container">
       <div class="mosaic_content">
-
+        <%= render partial: "shared/tags", collection: @tags %>
+        <%= render partial: "shared/accounts", collection: @accounts %>
       </div>
     </div>
 
@@ -35,7 +23,7 @@
                         <%= link_to "Unlink your Instagram account",
                               authentication_path(current_user.instagram_authentication),
                               method: :delete %>
-                            
+
                       </li>
                   </ul>
 
@@ -100,7 +88,6 @@
 
         </div>
       </div>
-    </div>
 
   </div>
 

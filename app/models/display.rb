@@ -9,4 +9,9 @@ class Display < ApplicationRecord
 
   mount_uploader :file, FileUploader
 
+
+
+
+
+
 end
