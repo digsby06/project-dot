@@ -114,6 +114,8 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    nokogumbo (1.4.2)
+      nokogiri
     oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -131,6 +133,13 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.19.0)
+    polymer-elements-rails (1.0.1)
+      polymer-rails (~> 1.0, >= 1.0.3)
+    polymer-rails (1.2.4.1)
+      nokogiri (~> 1.6)
+      nokogumbo (= 1.4.2)
+      rails (>= 3.1.0)
+      sprockets (~> 3.0)
     puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -226,6 +235,8 @@ DEPENDENCIES
   omniauth
   omniauth-instagram
   pg (~> 0.18)
+  polymer-elements-rails
+  polymer-rails
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   sass-rails (~> 5.0)

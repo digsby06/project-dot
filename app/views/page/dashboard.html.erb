@@ -1,35 +1,29 @@
 
 
 <div id="content_container">
-    <div class="mosaic_container">
-      <div class="mosaic_content">
-        <%= render partial: "shared/tags", collection: @tags %>
-        <%= render partial: "shared/accounts", collection: @accounts %>
-      </div>
-    </div>
+
 
 
     <div class="side_container">
-      <div class="side">
+
         <div class="side_content">
 
           <div id="authorize_section">
 
             <% if current_user.instagram_authenticated? %>
-                <h3>Connected Accounts</h3>
+                <h3 class="textaligncenter">Connected Accounts</h3>
                   <ul>
                       <li class="instagram-icon">
                         <%= image_tag "instagram_icon.png", height: 40, width: 40 %>
-                        <%= link_to "Unlink your Instagram account",
-                              authentication_path(current_user.instagram_authentication),
-                              method: :delete %>
-
                       </li>
                   </ul>
+                  <div id ="unlinkaccount-btn" class="textaligncenter"><%= link_to "Unlink Connected Account",
+                        authentication_path(current_user.instagram_authentication),
+                        method: :delete, class: "btn btn-primary" %></div>
 
               <% else %>
 
-              <h3>Connect an Account</h3>
+              <h3 class="textaligncenter">Connect an Account</h3>
                   <ul>
                     <li>
                       <%= link_to user_instagram_omniauth_authorize_path(scope: "basic public_content relationships likes") do %>
@@ -44,7 +38,7 @@
 <% if current_user.instagram_authenticated? %>
 
           <div id="display_section">
-            <h3>Create a New Display</h3>
+            <h3 class="textaligncenter">Create a New Display</h3>
 
             <%= simple_form_for(@display, as: :display) do |f| %>
                 <div class="form-inputs">
@@ -61,7 +55,7 @@
           </div>
 
           <div id="entry_section">
-            <h3>Create a Entry</h3>
+            <h3 class="textaligncenter">Create a Entry</h3>
 
               <%= simple_form_for(@entry, as: :entry) do |f| %>
                   <div class="form-inputs">
@@ -86,9 +80,15 @@
 
 
 
+
+      </div>
+
+
+      <div class="mosaic_container">
+        <div class="mosaic_content">
+          <%= render partial: "shared/tags", collection: @tags %>
+          <%= render partial: "shared/accounts", collection: @accounts %>
         </div>
       </div>
 
   </div>
-
-</div>

@@ -4,6 +4,7 @@ Devise.setup do |config|
 
   require 'devise/orm/active_record'
 
+  config.authentication_keys = [:login]
 
   config.case_insensitive_keys = [:email]
 

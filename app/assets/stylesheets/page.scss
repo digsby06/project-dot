@@ -3,52 +3,109 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "colors";
+
+#unlinkaccount-btn .btn-primary{
+  background-color: #ff0000;
+  border-color: #cc0400;
+}
+
+#unlinkaccount-btn .btn-primary:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.preview-btn li > a{
+  padding: 0;
+}
+
 // Dashboard - Side Panel
 
-// #side_container{
-//   width: 400px;
-//   height: 100%;
-//   float: right;
-//   .side_panel{
-//     width: 100%;
-//     background-color: #000;
-//   }
+
+#content_container {
+  margin-top: 50px;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+}
+
+.side_container {
+  background: $darkgray;
+  position: absolute;
+  min-height: 100%;
+  border-right: solid 4px opacify(#342532, 0.9);
+  width: 400px;
+  -ms-flex: 0 400px;
+  -webkit-box-flex:  0;
+  -moz-box-flex:  0;
+  -ms-box-flex:  0;
+  box-flex:  0;
+}
+
+.side_content {
+  padding: 8% 8%;
+  color: $white;
+  ul{
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    }
+}
+
+.mosaic_container {
+  margin-left: 400px;
+  -ms-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+}
+
+// #entry_section{
+//   width: 75%;
 // }
 
-.mosaic_container{
-  float: left;
-  max-width: 75%;
-}
+// .mosaic_container{
+//   float: left;
+//   max-width: 75%;
+// }
 
-.side_container{
-width: 40rem;
-float: right;
-  .side {
-    position: fixed;
-    width: 40rem;
-    height: 100%;
-    background-color: $darkgray;
-    overflow-x: hidden;
-    overflow-y: auto;
-    z-index: 4;
-    border-right: solid 1px opacify(#342532, 0.9);
-    padding: 2% 2%;
-    .side_content{
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      color: $white;
-      ul{
-        list-style: none;
-      }
+// .side_container{
+// width: 40rem;
+// float: left;
+//   .side {
+//     position: fixed;
+//     width: 40rem;
+//     height: 100%;
+//     background-color: $darkgray;
+//     overflow-x: hidden;
+//     overflow-y: auto;
+//     z-index: 4;
+//     border-right: solid 1px opacify(#342532, 0.9);
+//     padding: 2% 2%;
+//     .side_content{
+//       width: 100%;
+//       margin-left: auto;
+//       margin-right: auto;
+//       color: $white;
+//       ul{
+//         list-style: none;
+//       }
+//
+//     }
+//   }
 
-    }
-  }
+//
+// }
 
-
-}
-
-
-#entry_section{
-  width: 300px;
+.form-actions {
+  text-align: center;
 }

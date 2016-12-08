@@ -1,12 +1,20 @@
 class PageController < ApplicationController
-  # before_action :authenticate_user!
-  # def callback
-  #   response = Instagram.get_access_token(param[:code], redirect_uri: ENV['REDIRECT_URI'])
-  #   session[:access_token] = response.access_token
-  #   redirect_to root_path
-  # end
+  before_action :user_signed_in!
+  def test
+    #code
+  end
 
 
+  def previewmode
+    return unless current_user && current_user.instagram_authenticated?
+      @entries = Entry.all
+
+      # tag = @entries.map { |entry| entry.hashtag}
+      account = @entries.map {|entry| entry.account_name}
+
+      # @tags = current_user.find_by_instagram_tag(tag[0])
+      @accounts = current_user.find_by_instagram_account(account[0])
+  end
 
 
   def dashboard
@@ -16,11 +24,10 @@ class PageController < ApplicationController
       @display = Display.new
       @displays = Display.all
 
-      tag = @entries.map { |entry| entry.hashtag}
+      # tag = @entries.map { |entry| entry.hashtag}
       account = @entries.map {|entry| entry.account_name}
 
-
-      @tags = current_user.find_by_instagram_tag(tag[0])
+      # @tags = current_user.find_by_instagram_tag(tag[0])
       @accounts = current_user.find_by_instagram_account(account[0])
 
   end

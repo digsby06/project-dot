@@ -4,19 +4,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
+  # Gated access to application before sign in
+  def user_signed_in!
+    if user_signed_in?
 
-  # def authenticate_user!
-  #   if user_signed_in?
-  #     super
-  #   else
-  #     redirect_to login_path
-  #   end
-  # end
-
-  def after_sign_in_path_for(resource)
-    root_path
+    else
+      redirect_to new_user_session_path
+    end
   end
-
 
   # Override Devise default permitted parameters to allow login
   # with email or username

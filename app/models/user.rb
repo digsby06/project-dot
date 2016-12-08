@@ -4,11 +4,19 @@ class User < ApplicationRecord
 
   has_many :authentications, dependent: :destroy
 
-  attr_accessor :login
+  attr_accessor :login, :username, :email, :password, :password_confirmation, :remember_me
 
-# Constants
 
-VALID_USERNAME_REGEX = /\A\w+\z/i
+  # Constants
+
+  VALID_USERNAME_REGEX = /\A\w+\z/i
+
+  # Validations
+
+  validates :username, presence: true,
+                       format: { with: VALID_USERNAME_REGEX },
+                       uniqueness: { case_sensitive: false }
+
 
 def find_by_instagram_tag(tag)
   auth = authentications.find_by_provider('instagram')
@@ -16,6 +24,7 @@ def find_by_instagram_tag(tag)
   client = Instagram.client(client_id: ENV['INSTAGRAM_CLIENT_ID'],
                             access_token: auth.token)
   media = client.tag_recent_media(tag)
+  puts media
   urls = media.map { |media_item| media_item.images.standard_resolution.url}
   urls
 end
@@ -32,11 +41,6 @@ def find_by_instagram_account(account)
 end
 
 
-# Validations
-
-validates :username, presence: true,
-                     format: { with: VALID_USERNAME_REGEX },
-                     uniqueness: { case_sensitive: false }
 
  def instagram_authentication
      authentications.find_by_provider('instagram')
@@ -74,6 +78,7 @@ validates :username, presence: true,
   def instagram_authenticated?
     !authentications.find_by_provider('instagram').nil?
   end
+
 
 
 end

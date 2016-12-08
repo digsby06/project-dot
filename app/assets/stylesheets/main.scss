@@ -87,9 +87,7 @@ img.aligncenter {
 
 /* Layout */
 
-#content_container {
-  margin-top: 50px;
-}
+
 
 .glyphicon.spinning {
     animation: spin 1s infinite linear;
@@ -120,14 +118,6 @@ img.inactive {
   font-size: 1.2em;
 }
 
-/* Map */
-
-#map-canvas {
-	height: 600px;
-	width: 100%;
-  margin-right: 10px;
-}
-
 /* Info Window */
 
 .info-window {
@@ -138,19 +128,6 @@ img.inactive {
 	word-wrap: break-word;
 }
 
-/* User Follows List */
-
-#instagram-user-follows-list {
-  height: 600px;
-  overflow-y: auto;
-}
-
-// .user-follow-form {
-//   font-size: 0.75em;
-//   &:hover {
-//     background-color: DarkGray;
-//   }
-// }
 
 /* Alerts */
 
