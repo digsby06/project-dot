@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_many :authentications, dependent: :destroy
 
-  attr_accessor :login, :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessor :login
 
 
   # Constants
