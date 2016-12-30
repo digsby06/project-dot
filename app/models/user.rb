@@ -3,9 +3,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :authentications, dependent: :destroy
+  has_many :displays, dependent: :destroy
 
   attr_accessor :login
-
 
   # Constants
 
@@ -17,45 +17,16 @@ class User < ApplicationRecord
                        format: { with: VALID_USERNAME_REGEX },
                        uniqueness: { case_sensitive: false }
 
+  # Creates an authentication from an omniauth hash
 
-def find_by_instagram_tag(tag)
-  auth = authentications.find_by_provider('instagram')
-  return nil if auth.nil?
-  client = Instagram.client(client_id: ENV['INSTAGRAM_CLIENT_ID'],
-                            access_token: auth.token)
-  media = client.tag_recent_media(tag)
-  puts media
-  urls = media.map { |media_item| media_item.images.standard_resolution.url}
-  urls
-end
-
-def find_by_instagram_account(account)
-  auth = authentications.find_by_provider('instagram')
-  return nil if auth.nil?
-  client = Instagram.client(client_id: ENV['INSTAGRAM_CLIENT_ID'],
-                            access_token: auth.token)
-  user = client.user
-  media = client.user_recent_media
-  urls = media.map { |media_item| media_item.images.standard_resolution.url}
-  urls
-end
-
-
-
- def instagram_authentication
-     authentications.find_by_provider('instagram')
-   end
-
-   #
-   # Creates an authentication from an omniauth hash
-   #
-   def apply_omniauth(omniauth)
+  def apply_omniauth(omniauth)
      authentications.build(provider: omniauth['provider'],
                            uid:      omniauth['uid'],
-                           token:    omniauth['credentials']['token'])
-   end
+                           token:    omniauth['credentials']['token'],
+                           secret:   omniauth['credentials']['secret'])
+  end
 
-   def self.find_for_database_authentication(warden_conditions)
+  def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
     if login
@@ -66,6 +37,18 @@ end
       find_by(conditions.to_h)
     end
   end
+
+  # Authentications
+
+  def instagram_authentication
+     authentications.find_by_provider('instagram')
+  end
+
+  def twitter_authentication
+    authentications.find_by_provider('twitter')
+  end
+
+  # Predicate Methods - returns true or false
 
   def email_required?
     false
@@ -79,6 +62,8 @@ end
     !authentications.find_by_provider('instagram').nil?
   end
 
-
+  def twitter_authenticated?
+    !authentications.find_by_provider('twitter').nil?
+  end
 
 end

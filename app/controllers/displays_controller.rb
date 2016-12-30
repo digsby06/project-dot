@@ -25,10 +25,11 @@ class DisplaysController < ApplicationController
   # POST /displays.json
   def create
     @display = Display.new(display_params)
+    @display.user = current_user
 
     respond_to do |format|
       if @display.save
-        format.html { redirect_to @display, notice: 'Display was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Display was successfully created.' }
         format.json { render :show, status: :created, location: @display }
       else
         format.html { render :new }
@@ -69,6 +70,6 @@ class DisplaysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def display_params
-      params.require(:display).permit(:name, :active_content, :file)
+      params.require(:display).permit(:name, :active_content, :file, :user_id)
     end
 end

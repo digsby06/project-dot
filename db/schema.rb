@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129163356) do
+ActiveRecord::Schema.define(version: 20161222154312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20161129163356) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "file"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_displays_on_user_id", using: :btree
   end
 
   create_table "entries", force: :cascade do |t|
@@ -45,6 +47,18 @@ ActiveRecord::Schema.define(version: 20161129163356) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["display_id"], name: "index_entries_on_display_id", using: :btree
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.text     "status"
+    t.string   "user_name"
+    t.text     "media_url"
+    t.datetime "tweet_sent_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "twitter_id"
+    t.integer  "entry_id"
+    t.index ["entry_id"], name: "index_tweets_on_entry_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,5 +80,7 @@ ActiveRecord::Schema.define(version: 20161129163356) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "displays", "users"
   add_foreign_key "entries", "displays"
+  add_foreign_key "tweets", "entries"
 end

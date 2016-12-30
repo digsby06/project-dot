@@ -10,24 +10,26 @@
 
           <div id="authorize_section">
 
-            <% if current_user.instagram_authenticated? %>
+            <% if current_user.twitter_authenticated? %>
                 <h3 class="textaligncenter">Connected Accounts</h3>
                   <ul>
-                      <li class="instagram-icon">
-                        <%= image_tag "instagram_icon.png", height: 40, width: 40 %>
+                      <li class="social-icon">
+                        <%= image_tag "twitter_icon.png", height: 40, width: 40 %>
                       </li>
                   </ul>
+
                   <div id ="unlinkaccount-btn" class="textaligncenter"><%= link_to "Unlink Connected Account",
-                        authentication_path(current_user.instagram_authentication),
-                        method: :delete, class: "btn btn-primary" %></div>
+                              authentication_path(current_user.twitter_authentication),
+                              method: :delete, class: "btn btn-primary" %></div>
 
               <% else %>
 
               <h3 class="textaligncenter">Connect an Account</h3>
                   <ul>
+
                     <li>
-                      <%= link_to user_instagram_omniauth_authorize_path(scope: "basic public_content relationships likes") do %>
-                        <%= image_tag "instagram_icon.png", height: 25, width: 25, class: "inactive", data: { toggle: 'tooltip', placement: 'bottom' }, title: "Authorize Instagram" %>
+                      <%= link_to user_twitter_omniauth_authorize_path do %>
+                        <%= image_tag "twitter_icon.png", height: 25, width: 25, class: "inactive", data: { toggle: 'tooltip', placement: 'bottom' }, title: "Authorize Twitter" %>
                       <% end %>
                     </li>
                   </ul>
@@ -35,7 +37,7 @@
 
           </div>
 
-<% if current_user.instagram_authenticated? %>
+<% if current_user.twitter_authenticated? %>
 
           <div id="display_section">
             <h3 class="textaligncenter">Create a New Display</h3>
@@ -85,9 +87,14 @@
 
 
       <div class="mosaic_container">
-        <div class="mosaic_content">
-          <%= render partial: "shared/tags", collection: @tags %>
-          <%= render partial: "shared/accounts", collection: @accounts %>
+        <div id="main" class="mosaic_content">
+          <!-- <%= render partial: "shared/tags", collection: @tags %>
+          <%= render partial: "shared/accounts", collection: @accounts %> -->
+          <% @filtered_tweets.shuffle.each do |url|%>
+              <article class="thumb">
+                <%= image_tag url, class: "image" %>
+              </article>
+          <% end  %>
         </div>
       </div>
 

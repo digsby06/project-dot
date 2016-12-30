@@ -9,6 +9,7 @@ private
 def build_resource(*args)
   super
   return unless session[:omniauth]
+
   @user.apply_omniauth(session[:omniauth])
   @user.valid?
 end

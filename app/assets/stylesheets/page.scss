@@ -23,7 +23,7 @@
 
 
 #content_container {
-  margin-top: 50px;
+  margin-top: 57px;
   display: -ms-flexbox;
   display: -webkit-box;
   display: -moz-box;
@@ -41,7 +41,7 @@
   background: $darkgray;
   position: absolute;
   min-height: 100%;
-  border-right: solid 4px opacify(#342532, 0.9);
+  // border-right: solid 4px opacify(#342532, 0.9);
   width: 400px;
   -ms-flex: 0 400px;
   -webkit-box-flex:  0;

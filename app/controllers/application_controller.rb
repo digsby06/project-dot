@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   # Gated access to application before sign in
   def user_signed_in!
     if user_signed_in?
-
     else
       redirect_to new_user_session_path
     end

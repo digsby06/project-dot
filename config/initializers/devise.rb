@@ -27,4 +27,6 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   config.omniauth :instagram, ENV['CLIENT_ID'], ENV['CLIENT_SECRET']
+
+  config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
 end

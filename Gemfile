@@ -24,20 +24,29 @@ gem 'jquery-ui-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-instagram'
+gem 'omniauth-twitter'
 
 # External APIs
 gem 'figaro'
 gem 'instagram'
+gem 'twitter'
+gem 'tweetstream'
 gem 'polymer-rails'
 gem 'polymer-elements-rails'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem "mini_magick"
 
+gem 'awesome_print'
+
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'pry'
 end
 
 group :development do

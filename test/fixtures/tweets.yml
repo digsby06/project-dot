@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyText
+  user_name: MyString
+  media_url: MyText
+  tweet_sent_at: 2016-12-16 12:57:22
+
+two:
+  status: MyText
+  user_name: MyString
+  media_url: MyText
+  tweet_sent_at: 2016-12-16 12:57:22

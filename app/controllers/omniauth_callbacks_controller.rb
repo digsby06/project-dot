@@ -10,6 +10,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   alias_method :instagram, :all
+  alias_method :twitter, :all
 
   private
 
@@ -32,7 +33,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     current_user.authentications.create(
       provider: omniauth['provider'],
       uid:      omniauth['uid'],
-      token:    omniauth['credentials']['token'])
+      token:    omniauth['credentials']['token'],
+      secret:   omniauth['credentials']['secret'])
     flash[:notice] = 'Authentication successful!'
     redirect_to root_url
   end
@@ -51,7 +53,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.new(username: omniauth['info']['nickname'])
     user.authentications.build(provider: omniauth['provider'],
                                uid:      omniauth['uid'],
-                               token:    omniauth['credentials']['token'])
+                               token:    omniauth['credentials']['token'],
+                               secret:   omniauth['credentials']['secret'])
     user
   end
 

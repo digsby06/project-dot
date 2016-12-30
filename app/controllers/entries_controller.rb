@@ -30,7 +30,8 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+        search_images_by_hashtag(@entry.id)
+        format.html { redirect_to root_path, notice: 'Entry was successfully created.' }
         format.json { render :show, status: :created, location: @entry }
       else
         format.html { render :new }
@@ -44,7 +45,7 @@ class EntriesController < ApplicationController
   def update
     respond_to do |format|
       if @entry.update(entry_params)
-        format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @entry }
       else
         format.html { render :edit }
@@ -58,10 +59,12 @@ class EntriesController < ApplicationController
   def destroy
     @entry.destroy
     respond_to do |format|
-      format.html { redirect_to entries_url, notice: 'Entry was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Entry was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -73,4 +76,27 @@ class EntriesController < ApplicationController
     def entry_params
       params.require(:entry).permit(:entry_name, :display_id, :hashtag, :account_name, :fill_percentage, :account_active, :hashtag_active)
     end
+
+    def current_user_token
+      current_user.twitter_authentication.token
+    end
+
+    def current_user_secret
+      current_user.twitter_authentication.secret
+    end
+
+    def search_images_by_hashtag(entry)
+      @entries = Entry.all
+      @hashtags = @entries.map(&:hashtag)
+      hashtag = @hashtags.last
+
+      pound_and_tag = "#" + hashtag
+      #Use SideKiq worker to perform tweet search for tweets that use hashtag
+      HashtagSearchWorker.perform_async(pound_and_tag, current_user_token, current_user_secret, entry)
+    end
+
+    def search_images_by_account
+
+    end
+
 end
